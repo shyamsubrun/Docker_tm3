@@ -35,10 +35,17 @@ jobs:
       - name: Démarrer un cluster Kubernetes avec Kind
         run: |
           kind create cluster --name my-cluster
+            - name: Démarrer un cluster Kind
+        run: |
+          kind create cluster --name kind-cluster
+          kubectl cluster-info
+          kubectl get nodes
+          echo "KUBECONFIG=$(kind get kubeconfig-path --name=kind-cluster)" >> $GITHUB_ENV
+
       - name: Vérifier le cluster
         run: |
           kubectl cluster-info
-          kubectl get nodes
+          kubectl get pods -A
 
   deploy:
     needs: build
@@ -52,5 +59,5 @@ jobs:
         run: |
           kubectl set image deployment/hello-world-node hello-world-node=shyamsubrun/hello-world-node:latest
         env:
-          KUBECONFIG: ${{ secrets.KUBECONFIG }}
+          KUBECONFIG: ${{ env.KUBECONFIG }}
  
