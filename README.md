@@ -40,12 +40,15 @@ Cependant, nous avons rencontré des erreurs lors du téléchargement du fichier
 Quelques captures
 
 ![image](https://github.com/user-attachments/assets/80da0c30-2ff9-4334-938d-9d113341b9f0)
+
 Build et Deployement
 
 ![image](https://github.com/user-attachments/assets/4d701272-971a-45b2-b102-7c21b94894fe)
+
 Process du Build
 
 ![image](https://github.com/user-attachments/assets/6cc7630c-3aff-40e6-b328-732f0f48d1fc)
+
 Process du Deployment
 
 ---
