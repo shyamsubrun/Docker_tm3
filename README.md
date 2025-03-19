@@ -1,6 +1,3 @@
-# Docker TM3  CI/CD (Intégration Continue / Déploiement Continu)
-
-
 # 🚀 TME CI/CD - Intégration Continue & Déploiement Continu
 
 Ce projet consiste à mettre en place un **pipeline CI/CD** en utilisant **GitHub Actions**, **Docker**, **Docker Hub** et **Kubernetes avec Kind** pour automatiser l'intégration et le déploiement d'une application.
