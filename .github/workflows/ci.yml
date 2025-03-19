@@ -44,10 +44,7 @@ jobs:
         run: |
           kind create cluster --name my-cluster
 
-      - name: Définir KUBECONFIG
-        run: |
-          echo "KUBECONFIG=${HOME}/.kube/config" >> $GITHUB_ENV
-
+  
       - name: Vérifier le cluster Kind
         run: |
           kind get clusters
