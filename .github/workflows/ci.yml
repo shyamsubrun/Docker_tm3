@@ -39,7 +39,7 @@ jobs:
         run: |
           kubectl cluster-info
           kubectl get nodes
-
+ 
   deploy:
     needs: build
     runs-on: ubuntu-latest
