@@ -27,11 +27,7 @@ jobs:
         run: |
           docker tag shyamsubrun/hello-world-node:${{ github.sha }} shyamsubrun/hello-world-node:latest
           docker push shyamsubrun/hello-world-node:latest
-      - name: Installer Kind
-        run: |
-          curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.17.0/kind-linux-amd64
-          chmod +x ./kind
-          sudo mv ./kind /usr/local/bin/kind
+      
       - name: Démarrer un cluster Kubernetes avec Kind
         run: |
           kind create cluster --name my-cluster
@@ -53,4 +49,8 @@ jobs:
           kubectl set image deployment/hello-world-node hello-world-node=shyamsubrun/hello-world-node:latest
         env:
           KUBECONFIG: ${{ secrets.KUBECONFIG }}
- 
+      - name: Installer Kind
+        run: |
+          curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.17.0/kind-linux-amd64
+          chmod +x ./kind
+          sudo mv ./kind /usr/local/bin/kind
