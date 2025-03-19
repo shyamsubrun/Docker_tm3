@@ -5,7 +5,7 @@ FROM node:18
 WORKDIR /usr/src/app
 
 
-COPY package.json .  # Copie package.json dans /app
+COPY package.json .
 
 # Copier les fichiers
 COPY . .
