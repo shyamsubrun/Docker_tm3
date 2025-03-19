@@ -42,8 +42,14 @@ jobs:
       - name: Démarrer un cluster Kubernetes avec Kind
         run: |
           kind create cluster --name my-cluster
+
+
       - name: Définir KUBECONFIG
-        run: echo "KUBECONFIG=${HOME}/.kube/config" >> $GITHUB_ENV
+        run: |
+          echo "KUBECONFIG=${HOME}/.kube/config" >> $GITHUB_ENV
+          cat ${HOME}/.kube/config
+
+
       - name: Vérifier le cluster
         run: |
           kubectl cluster-info
