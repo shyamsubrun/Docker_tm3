@@ -4,6 +4,9 @@ FROM node:18
 # Définir le répertoire de travail
 WORKDIR /usr/src/app
 
+
+COPY package.json .  # Copie package.json dans /app
+
 # Copier les fichiers
 COPY . .
 
