@@ -28,13 +28,8 @@ jobs:
           docker tag shyamsubrun/hello-world-node:${{ github.sha }} shyamsubrun/hello-world-node:latest
           docker push shyamsubrun/hello-world-node:latest
       
-      - name: Démarrer un cluster Kubernetes avec Kind
-        run: |
-          kind create cluster --name my-cluster
-      - name: Vérifier le cluster
-        run: |
-          kubectl cluster-info
-          kubectl get nodes
+
+     
 
   deploy:
     needs: build
@@ -47,6 +42,15 @@ jobs:
           chmod +x ./kind
           sudo mv ./kind /usr/local/bin/kind        with:
           version: 'latest'
+      - name: Démarrer un cluster Kubernetes avec Kind
+        run: |
+          kind create cluster --name my-cluster
+      - name: Vérifier le cluster
+        run: |
+          kubectl cluster-info
+          kubectl get nodes
+      - name: Créer un cluster Kind
+        run: kind create cluster
       - name: Déployer sur Kubernetes
         run: |
           kubectl set image deployment/hello-world-node hello-world-node=shyamsubrun/hello-world-node:latest
