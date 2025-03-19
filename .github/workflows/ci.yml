@@ -29,32 +29,28 @@ jobs:
           docker push shyamsubrun/hello-world-node:latest
       
 
-     
-deploy:
-  needs: build
-  runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v4
-
-    - name: Installer Kind
-      run: |
-        curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.17.0/kind-linux-amd64
-        chmod +x ./kind
-        sudo mv ./kind /usr/local/bin/kind
-
-    - name: Démarrer un cluster Kubernetes avec Kind
-      run: |
-        kind create cluster --name my-cluster
-        sleep 10  # Attendre que le cluster soit bien lancé
-
-    - name: Définir KUBECONFIG
-      run: echo "KUBECONFIG=${HOME}/.kube/config" >> $GITHUB_ENV
-
-    - name: Vérifier le cluster
-      run: |
-        kubectl cluster-info
-        kubectl get nodes
-
-    - name: Déployer sur Kubernetes
-      run: |
-        kubectl set image deployment/hello-world-node hello-world-node=shyamsubrun/hello-world-node:latest
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Installer Kind
+        run: |
+          curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.17.0/kind-linux-amd64
+          chmod +x ./kind
+          sudo mv ./kind /usr/local/bin/kind
+      - name: Démarrer un cluster Kubernetes avec Kind
+        run: |
+          kind create cluster --name my-cluster
+      - name: Définir KUBECONFIG
+        run: echo "KUBECONFIG=${HOME}/.kube/config" >> $GITHUB_ENV
+      - name: Vérifier le cluster
+        run: |
+          kubectl cluster-info
+          kubectl get nodes
+      - name: Déployer sur Kubernetes
+        run: |
+          kubectl set image shyamsubrun/hello-world-node hello-world-node=shyamsubrun/hello-world-node:latest
+        env:
+          KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      
