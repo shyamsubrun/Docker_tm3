@@ -28,7 +28,6 @@ jobs:
           docker tag shyamsubrun/hello-world-node:${{ github.sha }} shyamsubrun/hello-world-node:latest
           docker push shyamsubrun/hello-world-node:latest
       
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -44,7 +43,6 @@ jobs:
         run: |
           kind create cluster --name my-cluster
 
-  
       - name: Vérifier le cluster Kind
         run: |
           kind get clusters
@@ -59,6 +57,10 @@ jobs:
           kubectl cluster-info
           kubectl get nodes
 
-      - name: Déployer sur Kubernetes
+      - name: Déployer l'application avec deployment.yaml
+        run: |
+          kubectl apply -f deployment.yaml
+
+      - name: Déployer sur Kubernetes (mettre à jour l'image)
         run: |
           kubectl set image deployment/hello-world-node hello-world-node=shyamsubrun/hello-world-node:latest
