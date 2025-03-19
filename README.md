@@ -55,7 +55,7 @@ Process du Deployment
 ## ✅ Conclusion  
 
 Malgré plusieurs blocages techniques, nous avons réussi à mettre en place un **pipeline CI/CD** opérationnel incluant le **build**, le **push** et le **déploiement** de l'application.  
-Les prochaines étapes consisteront à finaliser l’utilisation du **Runner GitHub Actions auto-hébergé**.
+Les prochaines étapes consisteront à finaliser l’utilisation du **Runner GitHub Actions auto-hébergé** qui a été commencer mais non fini du fait que cela ne s'actualiser pas dans git.
 
 📌 **Projet réalisé dans le cadre du TME CI/CD**  
 📌 **Auteur : @shyamsubrun**   
